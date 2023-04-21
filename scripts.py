@@ -86,7 +86,7 @@ def create_commendation(name, lesson):
     year_of_study = schoolkid.year_of_study
     group_letter = schoolkid.group_letter
     try:
-        subject_math = Subject.objects.get(
+        subject = Subject.objects.get(
             title=lesson,
             year_of_study=year_of_study
         )
@@ -95,7 +95,7 @@ def create_commendation(name, lesson):
         return
 
     math_lessons = Lesson.objects.filter(
-        subject=subject_math,
+        subject=subject,
         year_of_study=year_of_study,
         group_letter=group_letter
     )
@@ -109,7 +109,7 @@ def create_commendation(name, lesson):
         text=random.choice(GOOD_COMMENDATIONS),
         created=random_lesson.date,
         schoolkid=schoolkid,
-        subject=subject_math,
+        subject=subject,
         teacher=random_lesson.teacher
     )
     print('Похвала добавлена')
